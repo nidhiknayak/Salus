@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) { // ✅ Add 'req' parameter
         if (!credentials?.email || !credentials?.password) {
           return null
         }
@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: user.name,
-          role: user.role,
+          role: user.role as "MANAGER" | "CAREWORKER", // ✅ Type assertion
         }
       }
     })
@@ -52,20 +52,20 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ user, token }) => {
       if (user) {
+        token.id = user.id
         token.role = user.role
       }
       return token
     },
     session: async ({ session, token }) => {
       if (token) {
-        session.user.id = token.sub!
-        session.user.role = token.role
+        session.user.id = token.id as string
+        session.user.role = token.role as "MANAGER" | "CAREWORKER"
       }
       return session
     },
   },
   pages: {
     signIn: '/auth/signin',
-    // Removed signUp as it's not a valid NextAuth page option
   }
 }
