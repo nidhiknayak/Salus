@@ -4,9 +4,10 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"  // ✅ Change from "sqlite"
   url      = env("DATABASE_URL")
 }
+
 
 model User {
   id        String   @id @default(cuid())
@@ -56,4 +57,4 @@ model Shift {
 }
 
 // Removed the enum Role since SQLite doesn't support enums
-// You can create a TypeScript enum or constants for type safety in your code
+// You can create a TypeScript enum or constants for type safety in your code 
