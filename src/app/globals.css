@@ -1,0 +1,128 @@
+/* src/app/globals.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom Ant Design overrides */
+.ant-card {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+}
+
+.ant-btn {
+  border-radius: 12px !important;
+  font-weight: 500;
+}
+
+.ant-btn-primary {
+  background: #CFFF5E !important;
+  border-color: #CFFF5E !important;
+  color: #1a1a1a !important;
+}
+
+.ant-btn-primary:hover {
+  background: #B8FF3C !important;
+  border-color: #B8FF3C !important;
+}
+
+.ant-input, .ant-input-password {
+  border-radius: 12px !important;
+  border: 1.5px solid #e1e5e9 !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+}
+
+.ant-input:focus, .ant-input-password:focus {
+  border-color: #CFFF5E !important;
+  box-shadow: 0 0 0 2px rgba(207, 255, 94, 0.1) !important;
+}
+
+.ant-select .ant-select-selector {
+  border-radius: 12px !important;
+  border: 1.5px solid #e1e5e9 !important;
+  padding: 8px 12px !important;
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: #CFFF5E !important;
+  box-shadow: 0 0 0 2px rgba(207, 255, 94, 0.1) !important;
+}
+
+.ant-table {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.ant-table-thead > tr > th {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  font-weight: 600;
+  color: #475569;
+}
+
+.ant-tag {
+  border-radius: 8px !important;
+  font-weight: 500;
+  border: none !important;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}

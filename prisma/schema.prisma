@@ -1,0 +1,59 @@
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("CAREWORKER") // Changed from Role enum to String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shifts    Shift[]
+
+  @@map("users")
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  latitude  Float
+  longitude Float
+  radius    Int      // in meters
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shifts    Shift[]
+
+  @@map("organizations")
+}
+
+model Shift {
+  id             String       @id @default(cuid())
+  userId         String
+  organizationId String
+  clockIn        DateTime
+  clockOut       DateTime?
+  noteIn         String?
+  noteOut        String?
+  clockInLat     Float?
+  clockInLng     Float?
+  clockOutLat    Float?
+  clockOutLng    Float?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  
+  user           User         @relation(fields: [userId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  @@map("shifts")
+}
+
+// Removed the enum Role since SQLite doesn't support enums
+// You can create a TypeScript enum or constants for type safety in your code
