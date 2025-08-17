@@ -4,6 +4,7 @@
 ## Overview
 
 GPS-based workforce management system for healthcare workers to clock in/out with location validation. Managers get real-time staff monitoring and analytics dashboard.
+🌐 Production URL: https://salus-iota.vercel.app
 
 **Key Implementation**: Custom GPS tracking, real-time perimeter validation, comprehensive analytics, and production-ready architecture.
 
@@ -12,36 +13,51 @@ GPS-based workforce management system for healthcare workers to clock in/out wit
 ## Codebase Structure
 
 ```
-salus-healthcare/
-├── src/
-│   ├── app/                     # Next.js 14 App Router
-│   │   ├── api/
-│   │   │   ├── auth/[...nextauth]/  # NextAuth.js config
-│   │   │   └── graphql/         # GraphQL API endpoint
-│   │   ├── auth/               # Login/Signup pages
-│   │   ├── dashboard/          # Manager dashboard
-│   │   │   └── worker/         # Care worker interface
-│   │   └── layout.tsx          # Root layout with providers
-│   ├── components/             # React components
-│   │   ├── dashboard/          # Manager components
-│   │   ├── worker/            # Care worker components
-│   │   └── auth/              # Authentication forms
-│   ├── lib/                   # Core utilities
-│   │   ├── auth.ts            # NextAuth.js setup
-│   │   ├── prisma.ts          # Database client
-│   │   └── apollo.ts          # GraphQL client
-│   ├── graphql/               # GraphQL implementation
-│   │   ├── schema.ts          # Type definitions
-│   │   ├── resolvers.ts       # Query/mutation logic
-│   │   └── context.ts         # Auth context
-│   ├── hooks/                 # Custom React hooks
-│   │   ├── useLocation.ts     # GPS tracking
-│   │   └── useAuth.ts         # Authentication
-│   └── types/                 # TypeScript definitions
-├── prisma/
-│   ├── schema.prisma          # Database schema
-│   └── migrations/            # DB migrations
-└── Configuration files
+SALUS/
+├── 📂 prisma/                    # Database layer
+│   ├── migrations/               # Database migration files
+│   ├── schema.prisma            # Database schema definition
+│   └── seed.ts                  # Database seeding script
+│
+├── 📂 src/app/                   # Next.js App Router
+│   ├── 📂 api/                   # API endpoints
+│   │   ├── auth/[...nextauth]/
+│   │   │   └── route.ts         # NextAuth.js configuration
+│   │   └── graphql/
+│   │       └── route.ts         # GraphQL API endpoint
+│   │
+│   ├── 📂 auth/                  # Authentication pages
+│   │   ├── signin/
+│   │   │   └── page.tsx         # Sign-in form
+│   │   └── signup/
+│   │       └── page.tsx         # Sign-up form
+│   │
+│   ├── 📂 dashboard/             # Manager dashboard
+│   │   └── page.tsx             # Analytics & management interface
+│   │
+│   ├── 📂 components/            # Reusable components
+│   │   └── providers.tsx        # Context providers
+│   │
+│   ├── 📂 graphql/               # GraphQL layer
+│   │   ├── resolvers.ts         # GraphQL resolvers
+│   │   └── schema.ts            # GraphQL schema definitions
+│   │
+│   ├── 📂 lib/                   # Utility libraries
+│   │   ├── apollo-client.ts     # Apollo Client configuration
+│   │   └── auth.ts              # NextAuth configuration
+│   │
+│   └── 📂 types/                 # TypeScript definitions
+│       ├── next-auth.d.ts       # NextAuth type extensions
+│       └── role.ts              # Role type definitions
+│
+├── 📂 public/                    # Static assets
+├── 📄 .env                      # Environment variables
+├── 📄 .env.local               # Local environment overrides
+├── 📄 package.json             # Dependencies & scripts
+├── 📄 next.config.js           # Next.js configuration
+├── 📄 tsconfig.json            # TypeScript configuration
+└── 📄 README.md                # Project documentation
+
 ```
 
 ---
