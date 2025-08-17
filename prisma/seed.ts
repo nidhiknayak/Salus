@@ -57,44 +57,47 @@ async function main() {
   });
 
   // Create some sample shifts
-  await prisma.shift.createMany({
-    data: [
-      {
-        userId: worker1.id,
-        organizationId: organization.id,
-        clockIn: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8 hours ago
-        clockOut: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
-        noteIn: 'Starting morning shift',
-        noteOut: 'Completed rounds',
-        clockInLat: 37.7562,
-        clockInLng: -122.4031,
-        clockOutLat: 37.7562,
-        clockOutLng: -122.4031,
-      },
-      {
-        userId: worker2.id,
-        organizationId: organization.id,
-        clockIn: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
-        clockOut: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
-        noteIn: 'Emergency call shift',
-        noteOut: 'Emergency handled successfully',
-        clockInLat: 37.7562,
-        clockInLng: -122.4031,
-        clockOutLat: 37.7562,
-        clockOutLng: -122.4031,
-      },
-      // Active shift for worker1
-      {
-        userId: worker1.id,
-        organizationId: organization.id,
-        clockIn: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-        noteIn: 'Afternoon shift',
-        clockInLat: 37.7562,
-        clockInLng: -122.4031,
-      },
-    ],
-    skipDuplicates: true,
-  });
+// Replace this section around line 96:
+await prisma.shift.createMany({
+  data: [
+    {
+      userId: worker1.id,
+      organizationId: organization.id,
+      clockIn: new Date(Date.now() - 8 * 60 * 60 * 1000), // 8 hours ago
+      clockOut: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hour ago
+      noteIn: 'Starting morning shift',
+      noteOut: 'Completed rounds',
+      clockInLat: 37.7562,
+      clockInLng: -122.4031,
+      clockOutLat: 37.7562,
+      clockOutLng: -122.4031,
+    },
+    {
+      userId: worker2.id,
+      organizationId: organization.id,
+      clockIn: new Date(Date.now() - 6 * 60 * 60 * 1000), // 6 hours ago
+      clockOut: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
+      noteIn: 'Emergency call shift',
+      noteOut: 'Emergency handled successfully',
+      clockInLat: 37.7562,
+      clockInLng: -122.4031,
+      clockOutLat: 37.7562,
+      clockOutLng: -122.4031,
+    },
+    // Active shift for worker1
+    {
+      userId: worker1.id,
+      organizationId: organization.id,
+      clockIn: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+      noteIn: 'Afternoon shift',
+      clockInLat: 37.7562,
+      clockInLng: -122.4031,
+    },
+  ],
+  // ❌ Remove this line:
+  // skipDuplicates: true,
+});
+
 
   console.log('Database seeded successfully!');
   console.log('\nTest accounts:');
